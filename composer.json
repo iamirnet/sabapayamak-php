@@ -1,0 +1,24 @@
+{
+    "name": "sabapayamak/php",
+    "version": "1.0.0",
+    "type": "library",
+    "description": "A PHP library for Sabapayamak API",
+    "keywords": ["sabapayamak", "sms", "api" , "irancell" , "hamrah aval", "sdk"],
+    "homepage": "https://github.com/KaransCo/sabapayamak-php",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Karans Co",
+            "email": "info@karans.co"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sabapayamak\\": "src/"
+        }
+    },
+    "minimum-stability" : "stable"
+}

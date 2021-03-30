@@ -25,83 +25,83 @@ class SabapayamakApi
     }   
 
 	
-    protected function get_path($method)
+        protected function get_path($method)
     {
         if($method == "getToken")
         {
-            return sprintf($this->apiPath,"/api/v1/user/authenticate");
+            return sprintf($this->apiPath."/api/v1/user/authenticate");
         }
         if($method == "getCredit")
         {
-            return sprintf($this->apiPath,"/api/v1/credit");
+            return sprintf($this->apiPath."/api/v1/credit");
         }
         if($method == "getCreditByDate")
         {
-            return sprintf($this->apiPath,"/api/v1/credit");
+            return sprintf($this->apiPath."/api/v1/credit");
         }
         if($method == "getCreditByCount")
         {
-            return sprintf($this->apiPath,"/api/v1/credit");
+            return sprintf($this->apiPath."/api/v1/credit");
         }
         if($method == "getCreditForSendSms")
         {
-            return sprintf($this->apiPath,"/api/v1/credit/send-sms");
+            return sprintf($this->apiPath."/api/v1/credit/send-sms");
         }
         if($method == "getCreditForRecivedSms")
         {
-            return sprintf($this->apiPath,"/api/v1/credit/recived");
+            return sprintf($this->apiPath."/api/v1/credit/recived");
         }
         if($method == "getCreditForCharge")
         {
-            return sprintf($this->apiPath,"/api/v1/credit/charge");
+            return sprintf($this->apiPath."/api/v1/credit/charge");
         }
         if($method == "getCreditForMoneyBack")
         {
-            return sprintf($this->apiPath,"/api/v1/credit/money-back");
+            return sprintf($this->apiPath."/api/v1/credit/money-back");
         }
         if($method == "getMessagesByDate")
         {
-            return sprintf($this->apiPath,"/api/v1/credit/messages");
+            return sprintf($this->apiPath."/api/v1/credit/messages");
         }
         if($method == "getMessageById")
         {
-            return sprintf($this->apiPath,"/api/v1/credit/messages");
+            return sprintf($this->apiPath."/api/v1/credit/messages");
         }
         if($method == "getMessagesByNumber")
         {
-            return sprintf($this->apiPath,"/api/v1/credit/messages/number");
+            return sprintf($this->apiPath."/api/v1/credit/messages/number");
         }
         if($method == "postMessage")
         {
-            return sprintf($this->apiPath,"/api/v1/messages");
+            return sprintf($this->apiPath."/api/v1/message");
         }
         if($method == "getDeliveriesById")
         {
-            return sprintf($this->apiPath,"/api/v1//api/v1/deliveries");
+            return sprintf($this->apiPath."/api/v1//api/v1/deliveries");
         }
         if($method == "getRecivedMessageByDate")
         {
-            return sprintf($this->apiPath,"/api/v1/recived-messages");
+            return sprintf($this->apiPath."/api/v1/recived-messages");
         }
         if($method == "getRecivedMessageByNumber")
         {
-            return sprintf($this->apiPath,"/api/v1/recived-messages");
+            return sprintf($this->apiPath."/api/v1/recived-messages");
         }
         if($method == "getUnreadRecivedMessageByNumber")
         {
-            return sprintf($this->apiPath,"/api/v1/recived-messages");
+            return sprintf($this->apiPath."/api/v1/recived-messages");
         }
         if($method == "getRecivedMessageByVNumber")
         {
-            return sprintf($this->apiPath,"/api/v1/recived-messages/virtaul-number");
+            return sprintf($this->apiPath."/api/v1/recived-messages/virtaul-number");
         }
         if($method == "getUnreadRecivedMessageByVNumber")
         {
-            return sprintf($this->apiPath,"/api/v1/recived-messages/virtaul-number");
+            return sprintf($this->apiPath."/api/v1/recived-messages/virtaul-number");
         }
         if($method == "getUnreadRecivedMessage")
         {
-            return sprintf($this->apiPath,"/api/v1/recived-messages/unread");
+            return sprintf($this->apiPath."/api/v1/recived-messages/unread");
         }
 
         
@@ -116,18 +116,16 @@ class SabapayamakApi
                 'charset: utf-8',
                 $authorization
             );
-            $fields_string = "";
-            if (!is_null($data)) {
-                $fields_string = http_build_query($data);
-            }
+            $payload = json_encode($data);
+
             $handle = curl_init();
             curl_setopt($handle, CURLOPT_URL, $url);
             curl_setopt($handle, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($handle, CURLOPT_POST, true);
-            curl_setopt($handle, CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($handle, CURLOPT_POST, 1);
+            curl_setopt($handle, CURLOPT_POSTFIELDS, $payload);
             
             $response     = curl_exec($handle);
             $code         = curl_getinfo($handle, CURLINFO_HTTP_CODE);
@@ -141,7 +139,7 @@ class SabapayamakApi
             if(is_null($json_response)){
                 throw new Exception("Error happend!");
             } else {
-                return $json_response->entries;
+                return $json_response;
             }
         }
         catch(Exception $e) {
@@ -149,25 +147,22 @@ class SabapayamakApi
           }  
     }
     protected function Post($url, $data)
-    {        
+    {          
         try{
             $headers       = array(
                 'Accept: application/json',
                 'Content-Type: application/json',
                 'charset: utf-8'
             );
-            $fields_string = "";
-            if (!is_null($data)) {
-                $fields_string = http_build_query($data);
-            }
+            $payload = json_encode($data);
             $handle = curl_init();
             curl_setopt($handle, CURLOPT_URL, $url);
             curl_setopt($handle, CURLOPT_HTTPHEADER, $headers);
             curl_setopt($handle, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($handle, CURLOPT_SSL_VERIFYHOST, false);
             curl_setopt($handle, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($handle, CURLOPT_POST, true);
-            curl_setopt($handle, CURLOPT_POSTFIELDS, $fields_string);
+            curl_setopt($handle, CURLOPT_POST, 1);
+            curl_setopt($handle, CURLOPT_POSTFIELDS, $payload);
             
             $response     = curl_exec($handle);
             $code         = curl_getinfo($handle, CURLINFO_HTTP_CODE);
@@ -181,20 +176,22 @@ class SabapayamakApi
             if(is_null($json_response)){
                 throw new Exception("Error happend!");
             } else {
-                return $json_response->entries;
+                return $json_response;
             }
         }
         catch(Exception $e) {
             return $e->getMessage();
-          }  
+        }      
     }
     protected function GetWithToken($url,$token)
     {        
         try{
+            $authorization = "Authorization: Bearer ".$token;
             $headers       = array(
                 'Accept: application/json',
                 'Content-Type: application/json',
-                'charset: utf-8'
+                'charset: utf-8',
+                $authorization
             );
             $handle = curl_init();
             curl_setopt($handle, CURLOPT_URL, $url);
@@ -215,13 +212,14 @@ class SabapayamakApi
             if(is_null($json_response)){
                 throw new Exception("Error happend!");
             } else {
-                return $json_response->entries;
+                return $json_response;
             }
         }
         catch(Exception $e) {
             return $e->getMessage();
           }  
     }
+
 
 
 
@@ -277,7 +275,7 @@ class SabapayamakApi
         $path   = $this->get_path("getMessagesByNumber")."/".$number;
         return $this->GetWithToken($path, $token);
     }
-    public function SendMessage($text,$numbers){
+    public function SendMessage($text,$numbers,$token){
         $path   = $this->get_path("postMessage");
         $params = array(
             "text" => $text,

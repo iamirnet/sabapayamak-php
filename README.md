@@ -22,7 +22,7 @@ composer update
 
 ```php
 try{
-	$service = new \Sabapayamak\Sabapayamak( "YOUR_API_URL" );
+	$service = new \Sabapayamak\SabapayamakApi( "YOUR_API_URL" );
 	$result = $service->SendMessage("YOUR_MESSAGE_TEXT",array("NUMBER1","NUMBER2"),"YOUR_TOKEN"));
     retun $result;
 }

@@ -151,12 +151,10 @@ class SabapayamakApi
     protected function Post($url, $data)
     {        
         try{
-            $authorization = "Authorization: Bearer ".$token;
             $headers       = array(
                 'Accept: application/json',
                 'Content-Type: application/json',
-                'charset: utf-8',
-                $authorization
+                'charset: utf-8'
             );
             $fields_string = "";
             if (!is_null($data)) {

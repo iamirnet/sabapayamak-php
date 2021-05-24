@@ -229,7 +229,7 @@ class SabapayamakApi
             "username" => $username,
             "password" => $password,
             "virtualnumber" => $virtualnumber,
-            "validday" => $validday
+            "tokenvalidday" => $validday
         );
 
         return $this->post($path, $params);

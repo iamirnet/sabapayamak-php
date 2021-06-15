@@ -4,6 +4,7 @@ namespace Sabapayamak;
 
 use Sabapayamak\Enums\HttpStatus ;
 use Sabapayamak\Enums\ResultStatus;
+use Exception;
 
 class SabapayamakApi
 {

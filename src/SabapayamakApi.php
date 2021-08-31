@@ -2,11 +2,9 @@
 
 namespace Sabapayamak;
 
-use Sabapayamak\Exceptions\ApiException;
-use Sabapayamak\Exceptions\HttpException;
-use Sabapayamak\Exceptions\RuntimeException;
-use Sabapayamak\Enums\ApiLogs ;
-use Sabapayamak\Enums\General;
+use Sabapayamak\Enums\HttpStatus ;
+use Sabapayamak\Enums\ResultStatus;
+use Exception;
 
 class SabapayamakApi
 {

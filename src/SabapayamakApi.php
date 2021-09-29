@@ -319,7 +319,7 @@ class SabapayamakApi
        return $this->PostWithToken($path, $params, $token);
 
     }
-    public function SendMessage($username,$password,$from,$numbers,$text){
+    public function SendMessageWithUrl($username,$password,$from,$numbers,$text){
         $path   = $this->get_path("postMessageWithoutToke")."/"."?UserName=".$username."&Password=".$password."&From=".$from."&To=".$numbers."&Text=".$text;
 
        return $this->Get($path);

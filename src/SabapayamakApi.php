@@ -59,15 +59,15 @@ class SabapayamakApi
         }
         if($method == "getMessagesByDate")
         {
-            return sprintf($this->apiPath."/api/v1/credit/messages");
+            return sprintf($this->apiPath."/api/v1/messages");
         }
         if($method == "getMessageById")
         {
-            return sprintf($this->apiPath."/api/v1/credit/messages");
+            return sprintf($this->apiPath."/api/v1/messages");
         }
         if($method == "getMessagesByNumber")
         {
-            return sprintf($this->apiPath."/api/v1/credit/messages/number");
+            return sprintf($this->apiPath."/api/v1/messages/number");
         }
         if($method == "postMessage")
         {
